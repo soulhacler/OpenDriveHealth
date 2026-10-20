@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opendrivehealth"
+version = "0.1.0"
+description = "Free, open-source disk health monitor (S.M.A.R.T.) - a mix of CrystalDiskInfo and HDD Sentinel"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = []
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Environment :: X11 Applications",
+    "Topic :: System :: Hardware",
+    "Topic :: System :: Monitoring",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+odh = "opendrivehealth.cli:main"
+
+[project.gui-scripts]
+odh-gui = "opendrivehealth.gui:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+opendrivehealth = ["demo/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

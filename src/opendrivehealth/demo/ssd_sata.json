@@ -1,0 +1,282 @@
+{
+ "json_format_version": [
+  1,
+  0
+ ],
+ "smartctl": {
+  "version": [
+   7,
+   4
+  ],
+  "exit_status": 0
+ },
+ "device": {
+  "name": "/dev/sdc",
+  "info_name": "/dev/sdc",
+  "type": "sat",
+  "protocol": "ATA"
+ },
+ "model_name": "Samsung SSD 860 EVO 500GB",
+ "serial_number": "S3Z1NB0DEMO03",
+ "firmware_version": "RVT04B6Q",
+ "user_capacity": {
+  "blocks": 976773168,
+  "bytes": 500107862016
+ },
+ "logical_block_size": 512,
+ "smart_support": {
+  "available": true,
+  "enabled": true
+ },
+ "smart_status": {
+  "passed": true
+ },
+ "temperature": {
+  "current": 31
+ },
+ "power_on_time": {
+  "hours": 15230
+ },
+ "power_cycle_count": 2210,
+ "rotation_rate": 0,
+ "ata_smart_attributes": {
+  "revision": 16,
+  "table": [
+   {
+    "id": 5,
+    "name": "Reallocated_Sector_Ct",
+    "value": 100,
+    "worst": 100,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 9,
+    "name": "Power_On_Hours",
+    "value": 96,
+    "worst": 96,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 15230,
+     "string": "15230"
+    }
+   },
+   {
+    "id": 12,
+    "name": "Power_Cycle_Count",
+    "value": 97,
+    "worst": 97,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 2210,
+     "string": "2210"
+    }
+   },
+   {
+    "id": 177,
+    "name": "Wear_Leveling_Count",
+    "value": 88,
+    "worst": 88,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 121,
+     "string": "121"
+    }
+   },
+   {
+    "id": 179,
+    "name": "Used_Rsvd_Blk_Cnt_Tot",
+    "value": 100,
+    "worst": 100,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 181,
+    "name": "Program_Fail_Cnt_Total",
+    "value": 100,
+    "worst": 100,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 182,
+    "name": "Erase_Fail_Count_Total",
+    "value": 100,
+    "worst": 100,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 183,
+    "name": "Runtime_Bad_Block",
+    "value": 100,
+    "worst": 100,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 187,
+    "name": "Uncorrectable_Error_Cnt",
+    "value": 100,
+    "worst": 100,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 190,
+    "name": "Airflow_Temperature_Cel",
+    "value": 69,
+    "worst": 52,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 31,
+     "string": "31"
+    }
+   },
+   {
+    "id": 195,
+    "name": "ECC_Error_Rate",
+    "value": 200,
+    "worst": 200,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 199,
+    "name": "CRC_Error_Count",
+    "value": 100,
+    "worst": 100,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 235,
+    "name": "POR_Recovery_Count",
+    "value": 99,
+    "worst": 99,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 61,
+     "string": "61"
+    }
+   },
+   {
+    "id": 241,
+    "name": "Total_LBAs_Written",
+    "value": 99,
+    "worst": 99,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 61483920112,
+     "string": "61483920112"
+    }
+   }
+  ]
+ },
+ "interface_speed": {
+  "max": {
+   "string": "6.0 Gb/s"
+  },
+  "current": {
+   "string": "6.0 Gb/s"
+  }
+ },
+ "sata_version": {
+  "string": "SATA 3.3"
+ }
+}

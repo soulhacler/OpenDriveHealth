@@ -1,0 +1,394 @@
+{
+ "json_format_version": [
+  1,
+  0
+ ],
+ "smartctl": {
+  "version": [
+   7,
+   4
+  ],
+  "exit_status": 0
+ },
+ "device": {
+  "name": "/dev/sdb",
+  "info_name": "/dev/sdb",
+  "type": "sat",
+  "protocol": "ATA"
+ },
+ "model_name": "ST2000DM001-1CH164",
+ "serial_number": "Z1E0DEMO02",
+ "firmware_version": "CC27",
+ "user_capacity": {
+  "blocks": 3907029168,
+  "bytes": 2000398934016
+ },
+ "logical_block_size": 512,
+ "smart_support": {
+  "available": true,
+  "enabled": true
+ },
+ "smart_status": {
+  "passed": true
+ },
+ "temperature": {
+  "current": 47
+ },
+ "power_on_time": {
+  "hours": 38412
+ },
+ "power_cycle_count": 1890,
+ "rotation_rate": 7200,
+ "ata_smart_attributes": {
+  "revision": 16,
+  "table": [
+   {
+    "id": 1,
+    "name": "Raw_Read_Error_Rate",
+    "value": 104,
+    "worst": 99,
+    "thresh": 6,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 195382512,
+     "string": "195382512"
+    }
+   },
+   {
+    "id": 3,
+    "name": "Spin_Up_Time",
+    "value": 95,
+    "worst": 94,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 4,
+    "name": "Start_Stop_Count",
+    "value": 99,
+    "worst": 99,
+    "thresh": 20,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 1921,
+     "string": "1921"
+    }
+   },
+   {
+    "id": 5,
+    "name": "Reallocated_Sector_Ct",
+    "value": 86,
+    "worst": 86,
+    "thresh": 10,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 1832,
+     "string": "1832"
+    }
+   },
+   {
+    "id": 7,
+    "name": "Seek_Error_Rate",
+    "value": 80,
+    "worst": 60,
+    "thresh": 30,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 107374382,
+     "string": "107374382"
+    }
+   },
+   {
+    "id": 9,
+    "name": "Power_On_Hours",
+    "value": 57,
+    "worst": 57,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 38412,
+     "string": "38412"
+    }
+   },
+   {
+    "id": 10,
+    "name": "Spin_Retry_Count",
+    "value": 100,
+    "worst": 100,
+    "thresh": 97,
+    "when_failed": "",
+    "flags": {
+     "value": 51,
+     "prefailure": true
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 12,
+    "name": "Power_Cycle_Count",
+    "value": 99,
+    "worst": 99,
+    "thresh": 20,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 1890,
+     "string": "1890"
+    }
+   },
+   {
+    "id": 183,
+    "name": "Runtime_Bad_Block",
+    "value": 100,
+    "worst": 100,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 184,
+    "name": "End-to-End_Error",
+    "value": 100,
+    "worst": 100,
+    "thresh": 99,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 0,
+     "string": "0"
+    }
+   },
+   {
+    "id": 187,
+    "name": "Reported_Uncorrect",
+    "value": 1,
+    "worst": 1,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 412,
+     "string": "412"
+    }
+   },
+   {
+    "id": 188,
+    "name": "Command_Timeout",
+    "value": 100,
+    "worst": 99,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 4295032833,
+     "string": "1 1 1"
+    }
+   },
+   {
+    "id": 189,
+    "name": "High_Fly_Writes",
+    "value": 88,
+    "worst": 88,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 12,
+     "string": "12"
+    }
+   },
+   {
+    "id": 190,
+    "name": "Airflow_Temperature_Cel",
+    "value": 53,
+    "worst": 41,
+    "thresh": 45,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 47,
+     "string": "47 (Min/Max 19/59)"
+    }
+   },
+   {
+    "id": 194,
+    "name": "Temperature_Celsius",
+    "value": 47,
+    "worst": 59,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 47,
+     "string": "47 (0 14 0 0 0)"
+    }
+   },
+   {
+    "id": 197,
+    "name": "Current_Pending_Sector",
+    "value": 100,
+    "worst": 100,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 24,
+     "string": "24"
+    }
+   },
+   {
+    "id": 198,
+    "name": "Offline_Uncorrectable",
+    "value": 100,
+    "worst": 100,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 24,
+     "string": "24"
+    }
+   },
+   {
+    "id": 199,
+    "name": "UDMA_CRC_Error_Count",
+    "value": 200,
+    "worst": 200,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 3,
+     "string": "3"
+    }
+   },
+   {
+    "id": 240,
+    "name": "Head_Flying_Hours",
+    "value": 100,
+    "worst": 253,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 37960,
+     "string": "37960"
+    }
+   },
+   {
+    "id": 241,
+    "name": "Total_LBAs_Written",
+    "value": 100,
+    "worst": 253,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 48223190371,
+     "string": "48223190371"
+    }
+   },
+   {
+    "id": 242,
+    "name": "Total_LBAs_Read",
+    "value": 100,
+    "worst": 253,
+    "thresh": 0,
+    "when_failed": "",
+    "flags": {
+     "value": 50,
+     "prefailure": false
+    },
+    "raw": {
+     "value": 182733190211,
+     "string": "182733190211"
+    }
+   }
+  ]
+ },
+ "interface_speed": {
+  "max": {
+   "string": "6.0 Gb/s"
+  },
+  "current": {
+   "string": "6.0 Gb/s"
+  }
+ },
+ "sata_version": {
+  "string": "SATA 3.3"
+ }
+}

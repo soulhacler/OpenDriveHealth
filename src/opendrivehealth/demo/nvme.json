@@ -1,0 +1,55 @@
+{
+ "json_format_version": [
+  1,
+  0
+ ],
+ "smartctl": {
+  "version": [
+   7,
+   4
+  ],
+  "exit_status": 0
+ },
+ "device": {
+  "name": "/dev/nvme0",
+  "info_name": "/dev/nvme0",
+  "type": "nvme",
+  "protocol": "NVMe"
+ },
+ "model_name": "Samsung SSD 980 PRO 1TB",
+ "serial_number": "S5GXNF0DEMO04",
+ "firmware_version": "5B2QGXA7",
+ "logical_block_size": 512,
+ "smart_support": {
+  "available": true,
+  "enabled": true
+ },
+ "smart_status": {
+  "passed": true
+ },
+ "temperature": {
+  "current": 44
+ },
+ "power_on_time": {
+  "hours": 6120
+ },
+ "power_cycle_count": 980,
+ "nvme_total_capacity": 1000204886016,
+ "nvme_smart_health_information_log": {
+  "critical_warning": 0,
+  "temperature": 44,
+  "available_spare": 100,
+  "available_spare_threshold": 10,
+  "percentage_used": 3,
+  "data_units_read": 38201933,
+  "data_units_written": 41829211,
+  "host_reads": 512039201,
+  "host_writes": 893201933,
+  "controller_busy_time": 2101,
+  "power_cycles": 980,
+  "power_on_hours": 6120,
+  "unsafe_shutdowns": 57,
+  "media_errors": 0,
+  "num_err_log_entries": 0
+ }
+}
