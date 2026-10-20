@@ -5,7 +5,7 @@ at-a-glance S.M.A.R.T. view of *CrystalDiskInfo* with the health percentage,
 plain-English explanations and history tracking of *HDD Sentinel*, and runs on
 Windows, Linux and macOS.
 
-![Main window](docs/screenshot-main.png)
+![Dashboard](docs/screenshot-dashboard.png)
 
 ## Features
 
@@ -22,6 +22,9 @@ Windows, Linux and macOS.
   You're alerted when *anything gets worse*, such as a new bad sector, a
   status change, a health drop or overheating. A growing defect count is the
   best early warning of failure.
+- **Modern dark dashboard**: ring gauges for health, temperature and SSD
+  endurance, total bytes written, and a diagnostics list, with sidebar pages
+  for the S.M.A.R.T. table, history charts and settings.
 - **Charts** of health and temperature over time.
 - **Doesn't wake sleeping disks** by default.
 - **Scriptable CLI** with JSON output and Nagios-style exit codes for servers
@@ -29,7 +32,9 @@ Windows, Linux and macOS.
 - **No dependencies beyond Python and smartmontools.** The GUI uses Tkinter,
   which ships with Python.
 
-![History](docs/screenshot-history.png)
+| SSD | S.M.A.R.T. details | History |
+|---|---|---|
+| ![SSD](docs/screenshot-ssd.png) | ![S.M.A.R.T.](docs/screenshot-smart.png) | ![History](docs/screenshot-history.png) |
 
 ## Install
 
@@ -57,8 +62,9 @@ odh-gui              # real drives (run elevated)
 odh-gui --demo       # try it with built-in sample drives
 ```
 
-Press **F5** to refresh. Use *Options → Auto refresh* to set how often it
-checks in the background, and *File → Save report* to export JSON or text.
+Press **F5** or **Refresh** to re-check. Set the background check interval,
+history recording and whether to wake sleeping drives on the **Settings**
+page. **Export report** (bottom left) saves JSON or text.
 
 ### Command line
 
@@ -131,6 +137,7 @@ src/opendrivehealth/
   history.py    SQLite snapshots and change alerts
   cli.py        `odh` command
   gui.py        `odh-gui` Tkinter desktop app
+  widgets.py    dark theme, cards, ring gauges, toggles and charts
   demo/         sample smartctl dumps (also used by the tests)
 tests/          pytest suite
 ```
