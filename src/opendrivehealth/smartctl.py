@@ -280,6 +280,8 @@ def parse(data: Dict[str, Any], device: str = "", device_type: str = "") -> Driv
         if lbas_r and "lba" in lbas_r.name.lower():
             drive.host_reads_bytes = lbas_r.raw * sector
 
+    if drive.temperature_c == 0 and not drive.attributes:
+        drive.temperature_c = None  # virtual / non-SMART disks report a bogus 0
     if not drive.attributes and drive.smart_supported is False:
         drive.errors.append("S.M.A.R.T. is not supported by this device or its USB bridge.")
     return drive

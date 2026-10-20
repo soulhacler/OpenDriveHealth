@@ -144,7 +144,9 @@ def test_nvme_spare_below_threshold():
 
 def test_no_smart_is_unknown():
     d = smartctl.parse({"device": {"name": "/dev/sdx", "protocol": "ATA"},
-                        "smart_support": {"available": False}})
+                        "smart_support": {"available": False},
+                        "temperature": {"current": 0}})
+    assert d.temperature_c is None
     assert assess(d).status == Status.UNKNOWN
     assert d.errors
 
