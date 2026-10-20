@@ -31,3 +31,16 @@ def test_missing_smartctl(monkeypatch, capsys):
     monkeypatch.setattr("opendrivehealth.smartctl.find_smartctl", lambda: None)
     assert main(["list"]) == 3
     assert "smartctl was not found" in capsys.readouterr().err
+
+
+def test_bundled_smartctl_preferred_when_frozen(tmp_path, monkeypatch):
+    import sys
+
+    from opendrivehealth import smartctl
+    name = "smartctl.exe" if sys.platform == "win32" else "smartctl"
+    (tmp_path / "smartmontools").mkdir()
+    (tmp_path / "smartmontools" / name).write_text("")
+    monkeypatch.delenv("ODH_SMARTCTL", raising=False)
+    monkeypatch.setattr(sys, "frozen", True, raising=False)
+    monkeypatch.setattr(sys, "_MEIPASS", str(tmp_path), raising=False)
+    assert smartctl.find_smartctl() == str(tmp_path / "smartmontools" / name)

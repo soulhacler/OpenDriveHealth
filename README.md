@@ -38,6 +38,21 @@ Windows, Linux and macOS.
 
 ## Install
 
+### Windows (no Python needed)
+
+Download `OpenDriveHealth-…-windows.zip` from the
+[Releases](https://github.com/soulhacler/OpenDriveHealth/releases) page.
+For the latest test build, open the newest
+[Windows build](https://github.com/soulhacler/OpenDriveHealth/actions/workflows/windows-build.yml)
+run and download its artifact. Unzip it and run `OpenDriveHealth.exe`.
+smartctl is bundled, and the app asks for Administrator rights when it
+starts. Test builds aren't code-signed, so SmartScreen may warn you: choose
+*More info → Run anyway*.
+
+To build it yourself on Windows: `packaging\windows\build.ps1`.
+
+### From source (any OS)
+
 1. Install **smartmontools** (7.0 or newer):
    - Windows: the installer from <https://www.smartmontools.org/wiki/Download>
      (or `winget install smartmontools.smartmontools`)

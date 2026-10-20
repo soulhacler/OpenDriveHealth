@@ -6,3 +6,4 @@ dist/
 .pytest_cache/
 .venv/
 *.sqlite3
+*.spec

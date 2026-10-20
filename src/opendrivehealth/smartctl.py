@@ -46,10 +46,25 @@ class SmartctlError(RuntimeError):
     pass
 
 
+def _bundled_smartctl() -> Optional[str]:
+    """smartctl shipped inside a PyInstaller build (see packaging/windows)."""
+    if not getattr(sys, "frozen", False):
+        return None
+    name = "smartctl.exe" if sys.platform == "win32" else "smartctl"
+    for base in (getattr(sys, "_MEIPASS", ""), os.path.dirname(sys.executable)):
+        candidate = Path(base) / "smartmontools" / name
+        if base and candidate.is_file():
+            return str(candidate)
+    return None
+
+
 def find_smartctl() -> Optional[str]:
     env = os.environ.get("ODH_SMARTCTL")
     if env:
         return env
+    bundled = _bundled_smartctl()
+    if bundled:
+        return bundled
     found = shutil.which("smartctl")
     if found:
         return found

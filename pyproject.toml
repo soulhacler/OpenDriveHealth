@@ -32,7 +32,7 @@ odh-gui = "opendrivehealth.gui:main"
 where = ["src"]
 
 [tool.setuptools.package-data]
-opendrivehealth = ["demo/*.json"]
+opendrivehealth = ["demo/*.json", "icon.png"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

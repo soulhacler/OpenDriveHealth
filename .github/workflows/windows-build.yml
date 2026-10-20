@@ -1,0 +1,45 @@
+name: Windows build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: write  # only used to attach the zip to tagged releases
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install smartmontools
+        run: choco install smartmontools -y --no-progress
+      - name: Build
+        shell: pwsh
+        run: ./packaging/windows/build.ps1 -Version "${{ github.ref_type == 'tag' && github.ref_name || format('dev-{0}', github.run_number) }}"
+      - name: Smoke test
+        shell: pwsh
+        run: |
+          ./dist/odh.exe --version
+          ./dist/odh.exe --demo --no-color
+          if ($LASTEXITCODE) { throw "demo failed" }
+          # Real scan on the runner's virtual disk: just make sure the bundled
+          # smartctl runs (no drives / no SMART is fine, exit code 3).
+          ./dist/odh.exe list --no-color
+          if ($LASTEXITCODE -notin 0,1,2,3) { throw "unexpected exit $LASTEXITCODE" }
+          $global:LASTEXITCODE = 0
+      - uses: actions/upload-artifact@v4
+        with:
+          name: OpenDriveHealth-windows
+          path: dist/OpenDriveHealth-*-windows.zip
+      - name: Attach to release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/OpenDriveHealth-*-windows.zip

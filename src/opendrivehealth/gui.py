@@ -13,6 +13,7 @@ import queue
 import threading
 import tkinter as tk
 from datetime import datetime
+from pathlib import Path
 from tkinter import filedialog, messagebox, ttk
 from typing import Dict, List, Optional
 
@@ -52,6 +53,10 @@ class App(tk.Tk):
     def __init__(self, args: argparse.Namespace):
         super().__init__()
         init_theme(self)
+        icon = Path(__file__).with_name("icon.png")
+        if icon.is_file():
+            self._icon = tk.PhotoImage(file=str(icon))
+            self.iconphoto(True, self._icon)
         self.args = args
         self.title("OpenDriveHealth" + (" (demo)" if args.demo else ""))
         self.geometry("1180x800")
