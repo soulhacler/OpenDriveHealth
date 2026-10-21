@@ -25,8 +25,10 @@ jobs:
           python-version: "3.12"
       - name: Work out version
         shell: pwsh
+        env:
+          RELEASE_INPUT: ${{ github.event.inputs.release }}
         run: |
-          $release = "${{ github.event.inputs.release }}".Trim().TrimStart("v")
+          $release = "$env:RELEASE_INPUT".Trim().TrimStart("v")
           if ("${{ github.ref_type }}" -eq "tag") { $v = "${{ github.ref_name }}" }
           elseif ($release) { $v = "v$release" }
           else { $v = "dev-${{ github.run_number }}" }
