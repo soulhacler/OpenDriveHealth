@@ -56,5 +56,9 @@ Guidelines:
 
 ## Releases
 
-Maintainers tag `vX.Y.Z` on `main`. The Windows build workflow then attaches
-`OpenDriveHealth-X.Y.Z-windows.zip` to the GitHub Release.
+1. Bump `__version__` in `src/opendrivehealth/__init__.py` and add a
+   `CHANGELOG.md` entry.
+2. On GitHub, open **Actions → Windows build → Run workflow** and enter the
+   version (e.g. `0.2.0`). It builds and tests the `.exe`, tags `v0.2.0` and
+   publishes the release with `OpenDriveHealth-v0.2.0-windows.zip` attached.
+   Pushing a `v*` tag yourself does the same.
