@@ -95,6 +95,7 @@ odh history            # drives with recorded history
 odh history WD40EFRX   # trend table for one drive
 odh --demo             # sample data, no hardware needed
 odh --json-file dump.json   # analyse a saved `smartctl -a --json` dump
+odh dump 0 -o drive.json    # save raw data for a bug report (serials removed)
 ```
 
 `odh check` exits with **0** (Good), **1** (Caution), **2** (Bad) or
@@ -164,9 +165,11 @@ pip install -e .[test]
 pytest
 ```
 
-You can help without coding by contributing anonymised dumps from drives with
-problems: `smartctl -a --json /dev/sdX > drive.json`, with the serial number
-removed. They become test cases and improve the scoring.
+You can help without coding: if you have a failing drive, or one whose score
+looks wrong, run `odh dump <number> -o drive.json` and attach the file to a
+[drive report](https://github.com/soulhacler/OpenDriveHealth/issues/new?template=drive_report.yml).
+Serial numbers are removed automatically. See [CONTRIBUTING.md](CONTRIBUTING.md)
+for more.
 
 ## Roadmap
 

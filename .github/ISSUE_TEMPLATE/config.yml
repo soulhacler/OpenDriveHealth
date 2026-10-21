@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: smartmontools drive database
+    url: https://www.smartmontools.org/wiki/Download#Updatethedrivedatabase
+    about: Unknown attribute names come from smartmontools. Missing drives can be reported to them.

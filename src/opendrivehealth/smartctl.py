@@ -115,15 +115,39 @@ def scan() -> List[Tuple[str, str]]:
     return out
 
 
-def read_drive(device: str, device_type: str = "", wake: bool = False) -> Drive:
-    """Query one device. By default sleeping disks are not spun up."""
+def _query(device: str, device_type: str = "", wake: bool = False) -> Tuple[Dict[str, Any], int]:
     args = ["--all", "--json"]
     if not wake:
         args += ["--nocheck=standby"]
     if device_type:
         args += ["-d", device_type]
     args.append(device)
-    data, rc = _run(args)
+    return _run(args)
+
+
+def raw_json(device: str, device_type: str = "", wake: bool = False) -> Dict[str, Any]:
+    """The unparsed ``smartctl --all --json`` output for one device."""
+    return _query(device, device_type, wake)[0]
+
+
+# Fields that identify a specific physical drive. Removed before sharing.
+IDENTIFYING_KEYS = ("serial_number", "wwn", "logical_unit_id", "nvme_ieee_oui_identifier",
+                    "eui64", "nguid", "scsi_serial_number")
+
+
+def anonymize(data: Any) -> Any:
+    """Copy of a smartctl dump with serial numbers and unique IDs redacted."""
+    if isinstance(data, dict):
+        return {k: ("REDACTED" if k in IDENTIFYING_KEYS else anonymize(v))
+                for k, v in data.items()}
+    if isinstance(data, list):
+        return [anonymize(v) for v in data]
+    return data
+
+
+def read_drive(device: str, device_type: str = "", wake: bool = False) -> Drive:
+    """Query one device. By default sleeping disks are not spun up."""
+    data, rc = _query(device, device_type, wake)
     drive = parse(data, device=device, device_type=device_type)
     if rc & (EXIT_CMDLINE | EXIT_OPEN_FAILED):
         msgs = _messages(data) or [f"smartctl exited with status {rc}"]

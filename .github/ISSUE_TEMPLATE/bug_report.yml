@@ -1,0 +1,44 @@
+name: Bug report
+description: Something doesn't work, crashes or looks wrong
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect, and what happened instead? Screenshots help a lot.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: OpenDriveHealth version
+      description: Shown at the bottom of the sidebar, or run `odh --version`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows 11, Windows 10, Linux, macOS, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options: [Windows download (.exe), pip / from source, Other]
+  - type: textarea
+    id: dump
+    attributes:
+      label: Drive data (if the problem is about a specific drive)
+      description: |
+        From an Administrator / root terminal run `odh list`, then
+        `odh dump <number> -o drive.json` and drag `drive.json` here.
+        Serial numbers and unique IDs are removed automatically.
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error messages or output
+      render: text

@@ -10,6 +10,7 @@ import subprocess
 import sys
 import time
 from datetime import datetime
+from pathlib import Path
 from typing import List, Optional
 
 from . import __version__, fmt
@@ -23,7 +24,7 @@ from .smartctl import SmartctlError
 # straight into existing monitoring.
 EXIT_CODES = {Status.GOOD: 0, Status.CAUTION: 1, Status.BAD: 2, Status.UNKNOWN: 3}
 
-SUBCOMMANDS = ("list", "show", "check", "monitor", "history")
+SUBCOMMANDS = ("list", "show", "check", "monitor", "history", "dump")
 
 _COLORS = {Status.GOOD: "32", Status.CAUTION: "33", Status.BAD: "31", Status.UNKNOWN: "36"}
 _use_color = False
@@ -209,6 +210,37 @@ def cmd_history(args) -> int:
     return 0
 
 
+def cmd_dump(args) -> int:
+    from . import smartctl
+    from .core import demo_files
+    if args.demo or args.json_file:
+        files = args.json_file or [str(f) for f in demo_files()]
+        drives = [smartctl.load_json(f) for f in files]
+        d = select(drives, args.drive)
+        data = json.loads(Path(files[drives.index(d)]).read_text(encoding="utf-8")) if d else None
+    else:
+        found = smartctl.scan()
+        drives = [Drive(device=dev, device_type=typ) for dev, typ in found]
+        d = select(drives, args.drive)
+        if d is None:  # allow matching by serial or model
+            full = [smartctl.read_drive(dev, typ, wake=args.wake) for dev, typ in found]
+            d = select(full, args.drive)
+        data = smartctl.raw_json(d.device, d.device_type, wake=args.wake) if d else None
+    if data is None:
+        print(f"No drive matching {args.drive!r}. See `odh list`.", file=sys.stderr)
+        return EXIT_CODES[Status.UNKNOWN]
+    if not args.keep_ids:
+        data = smartctl.anonymize(data)
+    text = json.dumps(data, indent=2)
+    if args.output:
+        with open(args.output, "w", encoding="utf-8") as f:
+            f.write(text + "\n")
+        print(f"Saved {args.output}. Attach it to your GitHub issue.")
+    else:
+        print(text)
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
         prog="odh", description="OpenDriveHealth: check hard drive and SSD health (S.M.A.R.T.)")
@@ -237,6 +269,12 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--interval", type=int, default=600, help="seconds between checks")
     s.add_argument("--notify", action="store_true")
     s.add_argument("-q", "--quiet", action="store_true")
+    s = sub.add_parser("dump", parents=[src],
+                       help="save raw smartctl data for a bug report (serials removed)")
+    s.add_argument("drive", help="index, device path or serial (see `odh list`)")
+    s.add_argument("-o", "--output", help="file to write (default: print)")
+    s.add_argument("--keep-ids", action="store_true",
+                   help="don't remove serial numbers and unique IDs")
     s = sub.add_parser("history", parents=[db, src], help="show recorded trends")
     s.add_argument("drive", nargs="?", help="part of a model/serial")
     s.add_argument("--limit", type=int, default=50)
@@ -259,6 +297,8 @@ def main(argv: Optional[List[str]] = None) -> int:
             return cmd_monitor(args)
         if args.cmd == "history":
             return cmd_history(args)
+        if args.cmd == "dump":
+            return cmd_dump(args)
         drives = load_drives(demo=args.demo, json_files=args.json_file, wake=args.wake)
         return {"list": cmd_list, "show": cmd_show}[args.cmd](drives, args)
     except SmartctlError as e:

@@ -44,3 +44,21 @@ def test_bundled_smartctl_preferred_when_frozen(tmp_path, monkeypatch):
     monkeypatch.setattr(sys, "frozen", True, raising=False)
     monkeypatch.setattr(sys, "_MEIPASS", str(tmp_path), raising=False)
     assert smartctl.find_smartctl() == str(tmp_path / "smartmontools" / name)
+
+
+def test_dump_removes_serial(tmp_path, capsys):
+    out = tmp_path / "d.json"
+    assert main(["dump", "nvme0", "--demo", "-o", str(out)]) == 0
+    data = json.loads(out.read_text())
+    assert data["serial_number"] == "REDACTED"
+    assert data["model_name"] == "Samsung SSD 980 PRO 1TB"
+    assert "nvme_smart_health_information_log" in data
+
+
+def test_dump_keep_ids(capsys):
+    assert main(["dump", "0", "--demo", "--keep-ids"]) == 0
+    assert "REDACTED" not in capsys.readouterr().out
+
+
+def test_dump_unknown_drive(capsys):
+    assert main(["dump", "nope", "--demo"]) == 3

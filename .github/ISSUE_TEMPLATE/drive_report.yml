@@ -1,0 +1,46 @@
+name: Wrong health score / drive report
+description: A drive's health, status or temperature looks wrong, or you want to share data from a failing drive
+labels: [drive-data]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Real drive data is the most useful thing you can contribute. It becomes a
+        test case and helps tune the health scoring for everyone. Data from
+        drives that are failing or have failed is especially valuable.
+  - type: input
+    id: model
+    attributes:
+      label: Drive model
+      placeholder: e.g. WDC WD40EFRX-68N32N0
+    validations:
+      required: true
+  - type: textarea
+    id: shown
+    attributes:
+      label: What does OpenDriveHealth show?
+      description: Status, health % and temperature, or a screenshot.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What do you think is right, and why?
+      description: e.g. what CrystalDiskInfo, HDD Sentinel or the manufacturer's tool says, or what actually happened to the drive.
+    validations:
+      required: true
+  - type: textarea
+    id: dump
+    attributes:
+      label: Drive data
+      description: |
+        From an Administrator / root terminal run `odh list`, then
+        `odh dump <number> -o drive.json` and drag `drive.json` here.
+        Serial numbers and unique IDs are removed automatically.
+    validations:
+      required: true
+  - type: dropdown
+    id: fate
+    attributes:
+      label: Did this drive fail?
+      options: [Still working fine, Working but showing problems, Failed / data loss, Don't know]

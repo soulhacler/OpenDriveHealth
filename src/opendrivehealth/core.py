@@ -12,8 +12,12 @@ from .models import Drive
 DEMO_DIR = Path(__file__).parent / "demo"
 
 
+def demo_files() -> List[Path]:
+    return sorted(DEMO_DIR.glob("*.json"))
+
+
 def demo_drives() -> List[Drive]:
-    return [smartctl.load_json(str(p)) for p in sorted(DEMO_DIR.glob("*.json"))]
+    return [smartctl.load_json(str(p)) for p in demo_files()]
 
 
 def load_drives(demo: bool = False, json_files: Optional[List[str]] = None,
